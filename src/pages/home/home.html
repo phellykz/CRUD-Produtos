@@ -13,8 +13,9 @@
  
       <button ion-item (click)="editProduct(product.id)">
         <h1>{{ product.name }}</h1>
+        <h2>{{ product.brand }}</h2>
         <h2>{{ product.category_name }}</h2>
-        <h2>{{ product.duedate | date:'dd/MM/yyyy' }}</h2>
+        <h2>{{ product.fabrication | date:'dd/MM/yyyy' }}</h2>
         <h2 class="price">{{ product.price | currency:'BRL':true }}</h2>
       </button>
  
@@ -36,7 +37,7 @@
  
 <ion-footer>
   <ion-toolbar>
-    <p></p>
+    <p>{{ products.length }}</p>
     <ion-list>
       <ion-item no-lines>
         <ion-label>Listar inativos</ion-label>
