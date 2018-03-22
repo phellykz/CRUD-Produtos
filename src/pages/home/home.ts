@@ -35,7 +35,6 @@ export class HomePage {
   removeProduct(product: Product) {
     this.productProvider.remove(product.id)
       .then(() => {
-        // Removendo do array de produtos
         var index = this.products.indexOf(product);
         this.products.splice(index, 1);
         this.toast.create({ message: 'Produto removido.', duration: 3000, position: 'botton' }).present();

@@ -10,8 +10,8 @@ export class ProductProvider {
   public insert(product: Product) {
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
-        let sql = 'insert into products (name, brand, price, fabrication, active, category_id) values (?, ?, ?, ?, ?)';
-        let data = [product.name, product.brand, product.price, product.fabrication, product.active ? 1 : 0, product.category_id];
+        let sql = 'insert into products (name, price, fabrication, active, category_id) values (?, ?, ?, ?, ?)';
+        let data = [product.name, product.price, product.fabrication, product.active ? 1 : 0, product.category_id];
  
         return db.executeSql(sql, data)
           .catch((e) => console.error(e));
@@ -22,8 +22,8 @@ export class ProductProvider {
   public update(product: Product) {
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
-        let sql = 'update products set name = ?, brand = ?, price = ?, fabrication = ?, active = ?, category_id = ? where id = ?';
-        let data = [product.name, product.brand, product.price, product.fabrication, product.active ? 1 : 0, product.category_id, product.id];
+        let sql = 'update products set name = ?, price = ?, fabrication = ?, active = ?, category_id = ? where id = ?';
+        let data = [product.name, product.price, product.fabrication, product.active ? 1 : 0, product.category_id, product.id];
  
         return db.executeSql(sql, data)
           .catch((e) => console.error(e));
@@ -56,9 +56,8 @@ export class ProductProvider {
               let product = new Product();
               product.id = item.id;
               product.name = item.name;
-              product.brand = item.brand;
               product.price = item.price;
-              product.fabrication = item.fabrication;
+              product.fabrication = item.duedate;
               product.active = item.active;
               product.category_id = item.category_id;
  
@@ -77,8 +76,7 @@ export class ProductProvider {
       .then((db: SQLiteObject) => {
         let sql = 'SELECT p.*, c.name as category_name FROM products p inner join categories c on p.category_id = c.id where p.active = ?';
         var data: any[] = [active ? 1 : 0];
- 
-        
+
         if (name) {
           sql += ' and p.name like ?'
           data.push('%' + name + '%');
@@ -106,7 +104,6 @@ export class ProductProvider {
 export class Product {
   id: number;
   name: string;
-  brand: string;
   price: number;
   fabrication: Date;
   active: boolean;

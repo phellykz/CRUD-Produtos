@@ -27,7 +27,6 @@ export class EditProductPage {
     }
   }
  
-  
   ionViewDidLoad() {
     this.categoryProvider.getAll()
       .then((result: any[]) => {

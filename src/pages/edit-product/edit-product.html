@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Produto
+      Cadastro de produtos
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -13,11 +13,6 @@
     <ion-item>
       <ion-label stacked>Nome</ion-label>
       <ion-input type="text" name="name" [(ngModel)]="model.name"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label stacked>Marca</ion-label>
-      <ion-input type="text" name="brand" [(ngModel)]="model.brand"></ion-input>
     </ion-item>
  
     <ion-item>
@@ -39,7 +34,7 @@
  
     <ion-item>
       <ion-label>Ativo</ion-label>
-      <ion-checkbox name="active" [(ngModel)]="model.active"></ion-checkbox>
+      <ion-checkbox name="active" [(ngModel)]="model.active" checked="true" ></ion-checkbox>
     </ion-item>
  
   </ion-list>
